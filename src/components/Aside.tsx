@@ -46,7 +46,6 @@ const Aside = () => {
         <>
             <div className='lg:min-w-[300px] xl:min-w-[350px] hidden lg:block'>
                 <div className='w-[90%]'>
-
                     <div className='flex justify-between text-md'>
                         <div className='flex gap-3'>
                             <Image

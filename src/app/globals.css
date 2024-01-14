@@ -6,6 +6,17 @@
     .sidebar_items {
         @apply flex gap-3 text-medium items-center cursor-pointer py-3 px-3 hover:bg-neutral-200
     }
+
+
+}
+
+#send_message::after {
+    content: attr(data-content);
+    display: block;
+    margin-top: 100px;
+    position: absolute;
+    color: blue;
+    font-size: 20px;
 }
 
 ::-webkit-scrollbar {
