@@ -8,6 +8,7 @@ const PostImage = ({ image }: any) => {
                 <Image src={image}
                     width={300}
                     height={0}
+                    priority={false}
                     className=' w-full max-h-[600px]'
                     alt='post-image' />
             </div>

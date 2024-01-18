@@ -7,13 +7,21 @@ interface Props {
 }
 const GlobalState = ({ children }: Props) => {
     const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true)
+    const [notificationPannel, setNotificationPannel] = useState<boolean>(false)
     const handleSidebar = () => {
         setSidebarCollapsed(!sidebarCollapsed)
+    }
+    const handleNotificationPannel = () => {
+        setNotificationPannel(!notificationPannel)
     }
     return <GlobalContext.Provider
         value={{
             sidebarCollapsed,
             setSidebarCollapsed,
+            notificationPannel,
+            setNotificationPannel,
+
+            handleNotificationPannel,
             handleSidebar
         }}
     >

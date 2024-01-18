@@ -1,62 +1,25 @@
 'use client'
-import React, { InsHTMLAttributes, useContext } from 'react'
+import React, { useContext } from 'react'
 import { GoHome, GoHomeFill } from 'react-icons/go'
 import { IoIosSearch } from "react-icons/io";
-import { MdOutlineExplore, MdOutlineAddBox } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
+import { MdOutlineExplore, MdOutlineAddBox, MdExplore, MdOutlineAddCircle } from "react-icons/md";
 import { FiMessageCircle } from "react-icons/fi";
-import { FaRegUser, FaRegHeart, FaHamburger, FaInstagram } from "react-icons/fa";
+import { FaRegUser, FaHeart, FaRegHeart, FaHamburger, FaInstagram, FaUserAlt } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SearchContainer from './SearchContainer';
 import Link from 'next/link';
 import { GlobalContext } from '@/context/context';
 import Notifications from './Notifications';
 import { UrlObject } from 'url';
+import { TbMessageCircle2Filled } from "react-icons/tb";
 
-const list: {
-    map(arg0: (item: { url: string | UrlObject; icon: (string | number | boolean | React.ReactPortal | React.PromiseLikeOfReactNode | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined)[]; title: string | number | boolean | React.ReactPortal | React.PromiseLikeOfReactNode | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined; }, index: React.Key | null | undefined) => React.JSX.Element): React.ReactNode;
-    icon: []
-    title: string;
-    url: string;
-} = [
-        {
-            icon: [<GoHomeFill />, <GoHome />],
-            title: 'Home',
-            url: "/",
-        },
-        {
-            icon: [<IoIosSearch />],
-            title: 'Search',
-            url: "/search",
-        },
-        {
-            icon: [<MdOutlineExplore />],
-            title: 'Explore',
-            url: "/explore",
-        },
-        {
-            icon: [<FiMessageCircle />],
-            title: 'Message',
-            url: "/message",
-        },
-        {
-            icon: [<FaRegHeart />],
-            title: 'Notifications',
-            url: "",
-        },
-        {
-            icon: [<MdOutlineAddBox />],
-            title: 'Create',
-            url: "/create",
-        },
-        {
-            icon: [<FaRegUser />],
-            title: 'Profile',
-            url: "/profile",
-        },
-    ]
-
-const SidebarFull = ({ handleNotificationPannel }: any) => {
-    const { handleSidebar } = useContext(GlobalContext)
+const SidebarFull = () => {
+    const { handleSidebar, handleNotificationPannel } = useContext(GlobalContext)
+    let path;
+    if (typeof window !== 'undefined') {
+        path = window.location.pathname
+    }
     return (
         <>
             <div className='hidden md:block w-[250px] min-w-[250px] h-[100vh] border-r border-neutral-200 px-3 transition-all duration-400 ease-in-out'>
@@ -67,16 +30,56 @@ const SidebarFull = ({ handleNotificationPannel }: any) => {
                         </Link>
                     </h1>
                     <ul className='mt-5 space-y-2'>
-                        {
-                            list?.map((item: { url: string | UrlObject; icon: (string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined)[]; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, index: React.Key | null | undefined) => (
-                                <li onClick={handleSidebar} key={index}>
-                                    <Link href={item?.url ? item?.url : ""} className='sidebar_items'>
-                                        <span className='text-2xl'>{item?.icon[window.location.pathname === item?.url ? 1 : 0]}</span>
-                                        {item?.title}
-                                    </Link>
-                                </li>
-                            ))
-                        }
+                        <li>
+                            <Link href="/" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/" ? <GoHomeFill /> : <GoHome />}
+                                </span>
+                                Home
+                            </Link>
+                        </li>
+                        <li className='sidebar_items'>
+                            <span className='text-2xl'>
+                                {path === "/" ? <IoIosSearch /> : <IoSearch />}
+                            </span>
+                            Search
+                        </li>
+                        <li>
+                            <Link href="/explore" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/explore" ? <MdOutlineExplore /> : <MdExplore />}
+                                </span>
+                                Explore
+                            </Link>
+                        </li>
+                        <li onClick={handleSidebar}>
+                            <Link href="/message" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/message" ? <FiMessageCircle /> : <TbMessageCircle2Filled />}
+                                </span>
+                                Message
+                            </Link>
+                        </li>
+                        <li className='sidebar_items' onClick={handleNotificationPannel}>
+                            <span className='text-2xl'>
+                                {path === "/" ? <FaRegHeart /> : <FaHeart />}
+                            </span>
+                            Notifications
+                        </li>
+                        <li className='sidebar_items'>
+                            <span className='text-2xl'>
+                                {path === "/" ? <MdOutlineAddBox /> : <MdOutlineAddCircle />}
+                            </span>
+                            Create
+                        </li>
+                        <li>
+                            <Link href="/profile" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/profile" ? <FaRegUser /> : <FaUserAlt />}
+                                </span>
+                                Profile
+                            </Link>
+                        </li>
                     </ul>
                     <div className='absolute bottom-0 pb-7'>
                         <p className='text-md flex gap-3 px-3'><span className='text-2xl'><RxHamburgerMenu /></span>More</p>
@@ -87,6 +90,10 @@ const SidebarFull = ({ handleNotificationPannel }: any) => {
     )
 }
 const SidebarCollapsedLayout = ({ handleNotificationPannel }: any) => {
+    let path;
+    if (typeof window !== 'undefined') {
+        path = window.location.pathname
+    }
     const { handleSidebar } = useContext(GlobalContext)
     return (
         <>
@@ -98,45 +105,71 @@ const SidebarCollapsedLayout = ({ handleNotificationPannel }: any) => {
                         </Link>
                     </h1>
                     <ul className='mt-5 space-y-2'>
-                        {
-                            list?.map((item, index) => (
-                                <li className='sidebar_items' onClick={handleSidebar} key={index}>
-                                    <Link href={item?.url ? item?.url : ""}><span className='text-2xl'>{item?.icon}</span></Link>
-                                </li>
-                            ))
-                        }
+                        <li>
+                            <Link href="/" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/" ? <GoHomeFill /> : <GoHome />}
+                                </span>
+                            </Link>
+                        </li>
+                        <li className='sidebar_items'>
+                            <span className='text-2xl'>
+                                {path === "/" ? <IoIosSearch /> : <IoSearch />}
+                            </span>
+                        </li>
+                        <li>
+                            <Link href="/explore" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/explore" ? <MdOutlineExplore /> : <MdExplore />}
+                                </span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/message" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/message" ? <FiMessageCircle /> : <TbMessageCircle2Filled />}
+                                </span>
+                            </Link>
+                        </li>
+                        <li className='sidebar_items' onClick={handleSidebar}>
+                            <span className='text-2xl'>
+                                {path === "/" ? <FaRegHeart /> : <FaHeart />}
+                            </span>
+                        </li>
+                        <li className='sidebar_items'>
+                            <span className='text-2xl'>
+                                {path === "/" ? <MdOutlineAddBox /> : <MdOutlineAddCircle />}
+                            </span>
+                        </li>
+                        <li>
+                            <Link href="/profile" className='sidebar_items'>
+                                <span className='text-2xl'>
+                                    {path === "/profile" ? <FaRegUser /> : <FaUserAlt />}
+                                </span>
+                            </Link>
+                        </li>
                     </ul>
                     <div className='absolute bottom-0 pb-7'>
                         <p className='text-md flex gap-3 px-3'><span className='text-2xl'><RxHamburgerMenu /></span></p>
                     </div>
                 </div>
             </div>
+            {/* <Notifications /> */}
         </>
     )
 }
 
 function Sidebar() {
     const { sidebarCollapsed, handleSidebar } = useContext(GlobalContext)
-
-    const handleNotificationPannel = () => {
-        alert("hii")
-        return (
-            <>
-                <Notifications />
-            </>
-        )
-    }
     return (
         <>
-            {/* <SidebarFull /> */}
-
             {
                 sidebarCollapsed
-                    ? <SidebarFull handleNotificationPannel={handleNotificationPannel} />
-                    : <SidebarCollapsedLayout handleNotificationPannel={handleNotificationPannel} />
+                    ? <SidebarFull />
+                    : <SidebarCollapsedLayout />
             }
             <div className='hidden sm:block md:hidden'>
-                <SidebarCollapsedLayout handleNotificationPannel={handleNotificationPannel} />
+                <SidebarCollapsedLayout />
             </div>
 
             {/* <div className='hidden md:block w-[250px] min-w-[250px] h-[100vh] border-r border-neutral-200 px-3'>
