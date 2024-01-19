@@ -3,3 +3,8 @@ type IPostData = {
     image: any;
     location: string;
 }
+
+interface ISidebarPannel {
+    status: boolean,
+    content: string
+}

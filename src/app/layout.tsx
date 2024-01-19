@@ -21,9 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <GlobalState>
-          <div className='w-full h-full flex'>
+          <div className='w-full h-full flex bg-white'>
             <Sidebar />
-            <div className='content w-full h-full '>
+            <div className='content w-full h-full bg-white'>
               {children}
             </div>
           </div>

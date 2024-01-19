@@ -25,7 +25,7 @@ export default function Home() {
   ]
   return (
     <>
-      <div className='w-full flex h-[100vh] overflow-y-scroll pt-10 transition-all duration-400 ease-in-out'>
+      <div className='w-full flex h-[100vh] bg-white overflow-y-scroll pt-10 transition-all duration-400 ease-in-out'>
         <div className='px-2 pb-10 sm:px-0 m-auto'>
           {
             data.map((data: any, index: Key | null | undefined) => (

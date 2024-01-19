@@ -1,27 +1,27 @@
 'use client'
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 
 export const GlobalContext = createContext<any>(null)
 interface Props {
     children: ReactNode
 }
 const GlobalState = ({ children }: Props) => {
-    const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true)
-    const [notificationPannel, setNotificationPannel] = useState<boolean>(false)
+    const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false)
+    const [sidebarPannel, setSidebarPannel] = useState<boolean>(false)
     const handleSidebar = () => {
         setSidebarCollapsed(!sidebarCollapsed)
     }
-    const handleNotificationPannel = () => {
-        setNotificationPannel(!notificationPannel)
+    const handleSidebarPannel = () => {
+        setSidebarPannel(!sidebarPannel)
     }
     return <GlobalContext.Provider
         value={{
             sidebarCollapsed,
             setSidebarCollapsed,
-            notificationPannel,
-            setNotificationPannel,
+            sidebarPannel,
+            setSidebarPannel,
 
-            handleNotificationPannel,
+            handleSidebarPannel,
             handleSidebar
         }}
     >

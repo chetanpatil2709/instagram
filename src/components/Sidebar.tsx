@@ -13,16 +13,13 @@ import { GlobalContext } from '@/context/context';
 import Notifications from './Notifications';
 import { UrlObject } from 'url';
 import { TbMessageCircle2Filled } from "react-icons/tb";
+import SidebarPannel from './SidebarPannel';
 
-const SidebarFull = () => {
-    const { handleSidebar, handleNotificationPannel } = useContext(GlobalContext)
-    let path;
-    if (typeof window !== 'undefined') {
-        path = window.location.pathname
-    }
+const SidebarFull = ({ path }: any) => {
+    const { handleSidebar, sidebarCollapsed, setSidebarCollapsed, setSidebarPannel, sidebarPannel } = useContext(GlobalContext)
     return (
         <>
-            <div className='hidden md:block w-[250px] min-w-[250px] h-[100vh] border-r border-neutral-200 px-3 transition-all duration-400 ease-in-out'>
+            <div className='hidden md:block w-[250px] min-w-[250px] h-[100vh] border-r border-neutral-200 px-3 transition-all duration-400 ease-in-out bg-white'>
                 <div className='w-full h-full '>
                     <h1 className='text-2xl font-serif pt-5 px-6'>
                         <Link href="/">
@@ -30,7 +27,9 @@ const SidebarFull = () => {
                         </Link>
                     </h1>
                     <ul className='mt-5 space-y-2'>
-                        <li>
+                        <li
+                            onClick={() => { setSidebarCollapsed(false); setSidebarPannel(false) }}
+                        >
                             <Link href="/" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/" ? <GoHomeFill /> : <GoHome />}
@@ -38,13 +37,17 @@ const SidebarFull = () => {
                                 Home
                             </Link>
                         </li>
-                        <li className='sidebar_items'>
+                        <li className='sidebar_items'
+                            onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
+                        >
                             <span className='text-2xl'>
                                 {path === "/" ? <IoIosSearch /> : <IoSearch />}
                             </span>
                             Search
                         </li>
-                        <li>
+                        <li
+                            onClick={() => { setSidebarCollapsed(false); setSidebarPannel(false) }}
+                        >
                             <Link href="/explore" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/explore" ? <MdOutlineExplore /> : <MdExplore />}
@@ -52,7 +55,9 @@ const SidebarFull = () => {
                                 Explore
                             </Link>
                         </li>
-                        <li onClick={handleSidebar}>
+                        <li
+                            onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
+                        >
                             <Link href="/message" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/message" ? <FiMessageCircle /> : <TbMessageCircle2Filled />}
@@ -60,19 +65,25 @@ const SidebarFull = () => {
                                 Message
                             </Link>
                         </li>
-                        <li className='sidebar_items' onClick={handleNotificationPannel}>
+                        <li className='sidebar_items'
+                            onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
+                        >
                             <span className='text-2xl'>
                                 {path === "/" ? <FaRegHeart /> : <FaHeart />}
                             </span>
                             Notifications
                         </li>
-                        <li className='sidebar_items'>
+                        <li className='sidebar_items'
+                            onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
+                        >
                             <span className='text-2xl'>
                                 {path === "/" ? <MdOutlineAddBox /> : <MdOutlineAddCircle />}
                             </span>
                             Create
                         </li>
-                        <li>
+                        <li
+                            onClick={() => { setSidebarCollapsed(false); setSidebarPannel(false) }}
+                        >
                             <Link href="/profile" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/profile" ? <FaRegUser /> : <FaUserAlt />}
@@ -89,22 +100,21 @@ const SidebarFull = () => {
         </>
     )
 }
-const SidebarCollapsedLayout = ({ handleNotificationPannel }: any) => {
-    let path;
-    if (typeof window !== 'undefined') {
-        path = window.location.pathname
-    }
-    const { handleSidebar } = useContext(GlobalContext)
+const SidebarCollapsedLayout = ({ path }: any) => {
+    const { handleSidebar, sidebarCollapsed, setSidebarCollapsed, handleSidebarPannel, setSidebarPannel, sidebarPannel } = useContext(GlobalContext)
+
     return (
         <>
-            <div className='sm:block w-[70px] min-w-[70px] h-[100vh] border-r border-neutral-200 px-3 transition-all duration-400 ease-in-out'>
+            <div className='sm:block w-[70px] min-w-[70px] h-[100vh] bg-white border-r border-neutral-200 px-3 transition-all duration-400 ease-in-out'>
                 <div className='w-full h-full '>
                     <h1 className='text-3xl font-serif pt-5 px-3 cursor-pointer'>
                         <Link href="/">
                             <FaInstagram />
                         </Link>
                     </h1>
-                    <ul className='mt-5 space-y-2'>
+                    <ul className='mt-5 space-y-2'
+                        onClick={() => { setSidebarCollapsed(false); setSidebarPannel(false) }}
+                    >
                         <li>
                             <Link href="/" className='sidebar_items'>
                                 <span className='text-2xl'>
@@ -112,36 +122,48 @@ const SidebarCollapsedLayout = ({ handleNotificationPannel }: any) => {
                                 </span>
                             </Link>
                         </li>
-                        <li className='sidebar_items'>
+                        <li className='sidebar_items'
+                            onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
+                        >
                             <span className='text-2xl'>
                                 {path === "/" ? <IoIosSearch /> : <IoSearch />}
                             </span>
                         </li>
-                        <li>
+                        <li
+                            onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
+                        >
                             <Link href="/explore" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/explore" ? <MdOutlineExplore /> : <MdExplore />}
                                 </span>
                             </Link>
                         </li>
-                        <li>
+                        <li
+                            onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
+                        >
                             <Link href="/message" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/message" ? <FiMessageCircle /> : <TbMessageCircle2Filled />}
                                 </span>
                             </Link>
                         </li>
-                        <li className='sidebar_items' onClick={handleSidebar}>
+                        <li className='sidebar_items'
+                            onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
+                        >
                             <span className='text-2xl'>
                                 {path === "/" ? <FaRegHeart /> : <FaHeart />}
                             </span>
                         </li>
-                        <li className='sidebar_items'>
+                        <li className='sidebar_items'
+                            onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
+                        >
                             <span className='text-2xl'>
                                 {path === "/" ? <MdOutlineAddBox /> : <MdOutlineAddCircle />}
                             </span>
                         </li>
-                        <li>
+                        <li
+                            onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
+                        >
                             <Link href="/profile" className='sidebar_items'>
                                 <span className='text-2xl'>
                                     {path === "/profile" ? <FaRegUser /> : <FaUserAlt />}
@@ -154,67 +176,30 @@ const SidebarCollapsedLayout = ({ handleNotificationPannel }: any) => {
                     </div>
                 </div>
             </div>
-            {/* <Notifications /> */}
+            {/* <SidebarPannel />
+            <Notifications /> */}
+            {sidebarPannel && <SidebarPannel />}
         </>
     )
 }
 
 function Sidebar() {
     const { sidebarCollapsed, handleSidebar } = useContext(GlobalContext)
+    let path;
+    if (typeof window !== 'undefined') {
+        path = window.location.pathname
+    }
     return (
         <>
             {
                 sidebarCollapsed
-                    ? <SidebarFull />
-                    : <SidebarCollapsedLayout />
+                    ? <SidebarCollapsedLayout path={path} />
+                    : <SidebarFull path={path} />
             }
-            <div className='hidden sm:block md:hidden'>
-                <SidebarCollapsedLayout />
+            <div className='hidden sm:block md:hidden bg-white'>
+                <SidebarCollapsedLayout path={path} />
             </div>
 
-            {/* <div className='hidden md:block w-[250px] min-w-[250px] h-[100vh] border-r border-neutral-200 px-3'>
-                <div className='w-full h-full '>
-                    <h1 className='text-2xl font-serif pt-5 px-6'>Instagram</h1>
-                    <ul className='mt-5 space-y-2'>
-                        <li>
-                            <Link href="/" className='sidebar_items'>
-                                <span className='text-2xl'><GoHomeFill /></span>
-                                Home
-                            </Link>
-                        </li>
-                        <li className='sidebar_items'><span className='text-2xl'><IoIosSearch /></span>
-                            Search
-                        </li>
-                        <li className='sidebar_items'><span className='text-2xl'><MdOutlineExplore /></span>Explore</li>
-                        <li className=''>
-                            <Link href="/message" className='sidebar_items'><span className='text-2xl'><FiMessageCircle /></span>Message</Link>
-                        </li>
-                        <li className='sidebar_items'><span className='text-2xl'><FaRegHeart /></span>Notifications</li>
-                        <li className='sidebar_items'><span className='text-2xl'><MdOutlineAddBox /></span>Create</li>
-                        <li className='sidebar_items'><span className='text-2xl'><FaRegUser /></span>Profile</li>
-                    </ul>
-                    <div className='absolute bottom-0 pb-7'>
-                        <p className='text-md flex gap-3 px-3'><span className='text-2xl'><RxHamburgerMenu /></span>More</p>
-                    </div>
-                </div>
-            </div> */}
-            {/* <div className='hidden sm:block md:hidden w-[70px] min-w-[70px] h-[100vh] border-r border-neutral-200 px-3'>
-                <div className='w-full h-full '>
-                    <h1 className='text-3xl font-serif pt-5 px-3 cursor-pointer'><FaInstagram /></h1>
-                    <ul className='mt-5 space-y-2'>
-                        <li className='flex gap-3 text-md font-semibold items-center cursor-pointer py-3 px-3 hover:bg-neutral-200'><span className='text-2xl'><GoHomeFill /></span></li>
-                        <li className='sidebar_items'><span className='text-2xl'><IoIosSearch /></span></li>
-                        <li className='sidebar_items'><span className='text-2xl'><MdOutlineExplore /></span></li>
-                        <li className='sidebar_items'><span className='text-2xl'><FiMessageCircle /></span></li>
-                        <li className='sidebar_items'><span className='text-2xl'><FaRegHeart /></span></li>
-                        <li className='sidebar_items'><span className='text-2xl'><MdOutlineAddBox /></span></li>
-                        <li className='sidebar_items'><span className='text-2xl'><FaRegUser /></span></li>
-                    </ul>
-                    <div className='absolute bottom-0 pb-7'>
-                        <p className='text-md flex gap-3 px-3'><span className='text-2xl'><RxHamburgerMenu /></span></p>
-                    </div>
-                </div>
-            </div> */}
             <div className='sm:hidden w-full fixed bottom-0 bg-white z-10 h-[50px] p-0 border-t-1 border-gray-300'>
                 <ul className='w-full justify-between px-3 space-y-2 flex flex-row items-center text-2xl'>
                     <li className='flex gap-3 text-md font-semibold items-center cursor-pointer hover:bg-neutral-200'>
