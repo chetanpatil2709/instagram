@@ -21,7 +21,7 @@ const SidebarFull = ({ path }: any) => {
         <>
             <div className='hidden md:block w-[250px] min-w-[250px] h-[100vh] border-r border-neutral-200 px-3 transition-all duration-400 ease-in-out bg-white'>
                 <div className='w-full h-full '>
-                    <h1 className='text-2xl font-serif pt-5 px-6'>
+                    <h1 className='text-3xl text-pink-600 font-serif pt-5 px-6' style={{ fontFamily: "cursive" }}>
                         <Link href="/">
                             Instagram
                         </Link>
@@ -32,7 +32,7 @@ const SidebarFull = ({ path }: any) => {
                         >
                             <Link href="/" className='sidebar_items'>
                                 <span className='text-2xl'>
-                                    {path === "/" ? <GoHomeFill /> : <GoHome />}
+                                    {path === "/" ? <GoHome /> : <GoHome />}
                                 </span>
                                 Home
                             </Link>
@@ -41,7 +41,7 @@ const SidebarFull = ({ path }: any) => {
                             onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
                         >
                             <span className='text-2xl'>
-                                {path === "/" ? <IoIosSearch /> : <IoSearch />}
+                                {path === "/" ? <IoSearch /> : <IoSearch />}
                             </span>
                             Search
                         </li>
@@ -69,7 +69,7 @@ const SidebarFull = ({ path }: any) => {
                             onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
                         >
                             <span className='text-2xl'>
-                                {path === "/" ? <FaRegHeart /> : <FaHeart />}
+                                {path === "/" ? <FaHeart /> : <FaHeart />}
                             </span>
                             Notifications
                         </li>
@@ -77,7 +77,7 @@ const SidebarFull = ({ path }: any) => {
                             onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
                         >
                             <span className='text-2xl'>
-                                {path === "/" ? <MdOutlineAddBox /> : <MdOutlineAddCircle />}
+                                {path === "/" ? <MdOutlineAddCircle /> : <MdOutlineAddCircle />}
                             </span>
                             Create
                         </li>
@@ -118,7 +118,7 @@ const SidebarCollapsedLayout = ({ path }: any) => {
                         <li>
                             <Link href="/" className='sidebar_items'>
                                 <span className='text-2xl'>
-                                    {path === "/" ? <GoHomeFill /> : <GoHome />}
+                                    {path === "/" ? <GoHome /> : <GoHome />}
                                 </span>
                             </Link>
                         </li>
@@ -126,7 +126,7 @@ const SidebarCollapsedLayout = ({ path }: any) => {
                             onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
                         >
                             <span className='text-2xl'>
-                                {path === "/" ? <IoIosSearch /> : <IoSearch />}
+                                {path === "/" ? <IoSearch /> : <IoSearch />}
                             </span>
                         </li>
                         <li
@@ -151,14 +151,14 @@ const SidebarCollapsedLayout = ({ path }: any) => {
                             onClick={() => { setSidebarCollapsed(!sidebarCollapsed); setSidebarPannel(!sidebarPannel) }}
                         >
                             <span className='text-2xl'>
-                                {path === "/" ? <FaRegHeart /> : <FaHeart />}
+                                {path === "/" ? <FaHeart /> : <FaHeart />}
                             </span>
                         </li>
                         <li className='sidebar_items'
                             onClick={() => { setSidebarCollapsed(true); setSidebarPannel(false) }}
                         >
                             <span className='text-2xl'>
-                                {path === "/" ? <MdOutlineAddBox /> : <MdOutlineAddCircle />}
+                                {path === "/" ? <MdOutlineAddCircle /> : <MdOutlineAddCircle />}
                             </span>
                         </li>
                         <li

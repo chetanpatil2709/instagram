@@ -7,7 +7,14 @@
         @apply flex gap-3 text-medium items-center cursor-pointer py-3 px-3 hover:bg-neutral-200
     }
 
+    .text-input {
+        @apply px-2 py-2 outline-none bg-transparent border border-gray-200 rounded-lg text-black
+    }
+}
 
+
+#login-container {
+    box-shadow: 2px 3px 17px 1px #8080804a;
 }
 
 #send_message::after {

@@ -4,6 +4,7 @@ import './globals.css'
 import Sidebar from '@/components/Sidebar'
 import GlobalState from '@/context/context'
 import Notifications from '@/components/Notifications'
+import Auth from '@/components/Auth'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +18,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  if (typeof window !== 'undefined') {
+    let loggedIn: any = window.localStorage.getItem('isLoggedIn')
+    if (loggedIn === true || 'true') {
+
+    }
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -27,6 +35,7 @@ export default function RootLayout({
               {children}
             </div>
           </div>
+          {/* <Auth /> */}
         </GlobalState>
       </body>
     </html>

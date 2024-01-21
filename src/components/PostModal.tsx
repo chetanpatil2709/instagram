@@ -13,6 +13,7 @@ const PostModal = ({ isOpen, onOpenChange }: { isOpen: boolean, onOpenChange: an
                 onOpenChange={onOpenChange}
                 size='4xl'
                 scrollBehavior='outside'
+                placement='auto'
             >
                 <ModalContent className='bg-transparent border-none shadow-none sm:my-0'>
                     {(onClose) => (

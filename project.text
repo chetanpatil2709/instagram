@@ -1,0 +1,21 @@
+Instagram Clone
+
+User:
+- user_id
+- Username (String)
+- Name 
+- Email
+- Password
+- bio (textarea)
+- gender
+- profile picture URL
+- date
+- time
+
+Post:
+- user (Who make post)
+- Photos URL
+- Caption
+- Location
+- date
+- time

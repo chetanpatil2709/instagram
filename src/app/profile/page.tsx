@@ -1,8 +1,9 @@
 import Card from '@/components/Card'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-const page = () => {
+const Profile = () => {
     const FollowersLayout = () => {
         return (
             <>
@@ -25,7 +26,7 @@ const page = () => {
     }
     return (
         <>
-            <div className='w-full h-[100vh] overflow-y-auto '>
+            <div className='w-full h-[100vh] overflow-y-auto'>
                 <div className='w-[full] h-auto flex pt-8'>
                     <div className='w-[50%]'>
                         <Image
@@ -37,7 +38,7 @@ const page = () => {
                     <div className='w-full space-y-2'>
                         <div className='flex space-x-3'>
                             <h1 className='font-medium'>_hani_amir_</h1>
-                            <button className='px-2 py-1 bg-neutral-200 rounded-lg font-semibold flex gap-1'>edit <span className='hidden sm:block'> profile</span></button>
+                            <Link href='edit-profile' className='px-2 py-1 bg-neutral-200 rounded-lg font-semibold flex gap-1'>edit <span className='hidden sm:block'> profile</span></Link>
                         </div>
                         <div className='w-full sm:w-[90%] md:w-[80%]'>
                             <FollowersLayout />
@@ -65,4 +66,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Profile

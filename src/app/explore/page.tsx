@@ -1,7 +1,7 @@
 import Card from '@/components/Card'
 import React from 'react'
 
-const page = () => {
+const Explore = () => {
     return (
         <>
             <div className='w-full flex h-[100vh] overflow-y-scroll py-4 transition-all duration-400 ease-in-out'>
@@ -31,4 +31,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Explore

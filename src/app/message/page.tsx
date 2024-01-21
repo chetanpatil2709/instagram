@@ -7,7 +7,7 @@ interface IMsg {
     text: string;
     time: string;
 }
-const index = () => {
+const Message = () => {
     const msgData = [
         {
             isSender: true,
@@ -165,4 +165,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Message
