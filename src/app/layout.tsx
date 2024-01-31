@@ -5,7 +5,8 @@ import Sidebar from '@/components/Sidebar'
 import GlobalState from '@/context/context'
 import Notifications from '@/components/Notifications'
 import Auth from '@/components/Auth'
-
+import { Provider } from 'react-redux'
+import { store } from '../services/store'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -28,15 +29,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <GlobalState>
-          <div className='w-full h-full flex bg-white'>
+        <Provider store={store}>
+          <GlobalState>
+            {/* <div className='w-full h-full flex bg-white'>
             <Sidebar />
             <div className='content w-full h-full bg-white'>
               {children}
             </div>
-          </div>
-          {/* <Auth /> */}
-        </GlobalState>
+          </div> */}
+            <Auth />
+          </GlobalState>
+        </Provider>
       </body>
     </html>
   )

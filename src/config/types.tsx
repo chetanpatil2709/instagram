@@ -22,3 +22,11 @@ interface ICredentialSchema {
     username?: string;
     password?: string;
 }
+// Text Input Props
+interface ITextInputProps {
+    label?: string,
+    type?: string,
+    id?: string,
+    onChange?: React.ChangeEventHandler<HTMLInputElement>,
+    registerInput?: any
+}

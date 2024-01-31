@@ -1,12 +1,7 @@
 import { Input } from "@nextui-org/react"
 import React, { ReactNode } from "react"
-interface IProps {
-    label?: string,
-    type?: string,
-    id?: string,
-    onChange?: React.ChangeEventHandler<HTMLInputElement>
-}
-export const TextInput = ({ label, type, id, onChange, ...rest }: IProps) => {
+
+export const TextInput = ({ label, type, id, onChange, registerInput }: ITextInputProps) => {
     return (
         <>
             <Input
@@ -15,7 +10,7 @@ export const TextInput = ({ label, type, id, onChange, ...rest }: IProps) => {
                 id={id}
                 name={id}
                 onChange={onChange}
-                {...rest}
+                {...registerInput}
                 size='sm'
                 labelPlacement='inside'
                 variant='bordered'

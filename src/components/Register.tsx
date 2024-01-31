@@ -23,49 +23,37 @@ const Register = () => {
     }
     return (
         <>
-            <h1 className="text-black text-xl font-semibold text-center">Register</h1>
+            <h1 className="text-black text-xl font-semibold text-center mb-2">Register</h1>
             <form>
                 <div className='text-medium font-semibold space-y-4'>
                     <TextInput
                         label="email"
                         id="email"
                         type="text"
-                        {...register("email", { required: 'Email is required' })}
+                        registerInput={{ ...register("email", { required: 'Email is required' }) }}
                         onChange={handleChange}
                     />
                     <TextInput
                         label="username"
                         id="username"
                         type="text"
-                        {...register("username", { required: 'Username is required' })}
+                        registerInput={{ ...register("username", { required: 'Username is required' }) }}
                         onChange={handleChange}
                     />
                     <TextInput
                         label="password"
                         id="password"
                         type="password"
-                        {...register("password", { required: 'Password is required' })}
+                        registerInput={{ ...register("password", { required: 'Password is required' }) }}
                         onChange={handleChange}
                     />
                     <TextInput
                         label="confirm password"
                         id="confirmPassword"
                         type="password"
-                        {...register("confirmPassword", { required: 'Password is required' })}
+                        registerInput={{ ...register("confirmPassword", { required: 'Password is required' }) }}
                         onChange={handleChange}
                     />
-                    {/* <div className='flex flex-col'>
-                            <input type='email' id='email' className='text-input' name='email' placeholder='Email' />
-                        </div>
-                        <div className='flex flex-col'>
-                            <input type='text' id='username' className='text-input' name='username' placeholder='Username' />
-                        </div>
-                        <div className='flex flex-col'>
-                            <input type='password' id='password' className='text-input' name='password' placeholder='Password' />
-                        </div>
-                        <div className='flex flex-col'>
-                            <input type='password' id='password' className='text-input' name='password' placeholder='Password' />
-                        </div> */}
                     <div className='flex flex-col'>
                         <button type="submit" className='text-input text-white bg-blue-500 border-none' onClick={handleSubmit(handleOnSubmit)}>Register</button>
                     </div>
